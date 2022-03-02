@@ -18,5 +18,10 @@
         "classmap": [
             "src/App"
         ]
+    },
+    "extra": {
+        "providers": [
+            "Merciall\\Merci\\MerciServiceProvider"
+        ]
     }
 }
