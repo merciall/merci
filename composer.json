@@ -1,6 +1,6 @@
 {
     "name": "merciall/merci",
-    "description": "Collection of useful utilities",
+    "description": "Collection of useful utilities such as Str and Validate",
     "type": "library",
     "license": "proprietary",
     "authors": [
