@@ -8,26 +8,18 @@ class MerciServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         $this->mergeConfigFrom(
             $this->getConfigFile(),
             'merci'
         );
 
-        $services = $this->get_services();
+        $this->publishes([
+            __DIR__ . '/config/merci.php' => config_path('merci.php'),
+        ]);
 
-        foreach ($services as $service) {
-            $service = explode(".", $service)[0];
-
-            $name = ucfirst($service);
-
-            $class = "Merciall\\Merci\\App\\Services\\$name";
-
-            Merci::macro($service, function ($var) use ($class) {
-                return new $class($var);
-            });
-        }
+        $this->bootServices();
     }
 
     public function register()
@@ -42,6 +34,23 @@ class MerciServiceProvider extends ServiceProvider
     protected function getConfigFile(): string
     {
         return __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'merci.php';
+    }
+
+    private function bootServices(): void
+    {
+        $services = $this->get_services();
+
+        foreach ($services as $service) {
+            $service = explode(".", $service)[0];
+
+            $name = ucfirst($service);
+
+            $class = "Merciall\\Merci\\App\\Services\\$name";
+
+            Merci::macro($service, function ($var) use ($class) {
+                return new $class($var);
+            });
+        }
     }
 
     private function get_services()
