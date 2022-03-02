@@ -1,0 +1,22 @@
+{
+    "name": "merciall/merci",
+    "description": "Collection of useful utilities",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Terrell Finklea",
+            "email": "terrell.finklea@merciall.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Merciall\\Merci\\": "src/"
+        },
+        "classmap": [
+            "src/App"
+        ]
+    }
+}
