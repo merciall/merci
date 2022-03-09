@@ -16,7 +16,9 @@
             "Merciall\\Merci\\": "src/"
         },
         "classmap": [
-            "src/App"
+            "src/App",
+            "src/Facades",
+            "src/routes"
         ]
     },
     "extra": {
