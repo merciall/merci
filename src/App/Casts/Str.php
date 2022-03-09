@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Casts;
+namespace Merciall\Merci\App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Merciall\Merci\App\Services\Str as ServicesStr;
@@ -35,7 +35,7 @@ class Str implements CastsAttributes
     public function set($model, $key, $value, $attributes)
     {
         if (!$value instanceof ServicesStr && !is_string($value))
-            throw new ValueError("The given value not an instance of a string or a Str instance");
+            throw new ValueError("The given value is not a string or a Str instance");
 
         return (string) $value;
     }
