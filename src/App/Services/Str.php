@@ -8,10 +8,11 @@ use Merciall\Merci\App\Services\Str\Chop;
 use Merciall\Merci\App\Services\Str\Comparison;
 use Merciall\Merci\App\Services\Str\HandleBatchOperations;
 use Merciall\Merci\App\Services\Str\HandleStandardOperations;
+use Merciall\Merci\App\Services\Str\Replace;
 
 class Str extends Service
 {
-    use HandleStandardOperations, HandleBatchOperations, Chop, Comparison, Cases;
+    use HandleStandardOperations, HandleBatchOperations, Chop, Comparison, Cases, Replace;
 
     protected ?string $default;
 
@@ -125,20 +126,6 @@ class Str extends Service
             $obj->{$item} = $result[$key];
 
         return $obj;
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param array|string $search
-     * @param array|string $replace
-     * @param integer $count
-     */
-    public function replace(array|string $search, array|string $replace): Str
-    {
-        $this->haystack = str_replace($search, $replace, $this->haystack);
-
-        return $this;
     }
 
     /**

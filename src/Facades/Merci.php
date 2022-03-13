@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 use Merciall\Merci\App\Services\Str;
 
 /**
- * @method static Str Str()
+ * @method static Str Str() Accesses string utilities
  */
 class Merci extends Facade
 {
