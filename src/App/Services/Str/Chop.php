@@ -22,7 +22,7 @@ trait Chop
         $chops = explode($needle, $this->haystack);
 
         if (!$occurence_number)
-            $string = array_shift([...$chops]);
+            $string = array_shift($chops);
 
         if ($occurence_number)
             $string = $chops[$occurence_number - 1];
@@ -43,13 +43,6 @@ trait Chop
      */
     public function chopAfter(string $needle, bool $after_last_occurrence = false): Str
     {
-        $chops = explode("\\", get_class(new $this->model));
-
-        if ($after_last_occurrence)
-            return last($chops);
-
-        $this->_set($new_string);
-
         return $this;
     }
 
