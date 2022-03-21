@@ -8,11 +8,12 @@ use Merciall\Merci\App\Services\Str\Chop;
 use Merciall\Merci\App\Services\Str\Comparison;
 use Merciall\Merci\App\Services\Str\HandleBatchOperations;
 use Merciall\Merci\App\Services\Str\HandleStandardOperations;
+use Merciall\Merci\App\Services\Str\Manipulate;
 use Merciall\Merci\App\Services\Str\Replace;
 
 class Str extends Service
 {
-    use HandleStandardOperations, HandleBatchOperations, Chop, Comparison, Cases, Replace;
+    use HandleStandardOperations, HandleBatchOperations, Chop, Comparison, Cases, Replace, Manipulate;
 
     protected ?string $default;
 
