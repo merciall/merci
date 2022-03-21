@@ -11,13 +11,28 @@ const DETAG_END_DELIM = ">";
 trait Chop
 {
     /**
-     * Remove the part of the string that comes before a given string
+     * Removes the string before the first or last occurrence of a needle
      *
-     * @param string $needle
+     * @param string $needle The string to search for
+     * @param int $occurence_number Times needle should occur before chopping
      * @return Str
      */
-    public function chopBefore(string $needle): Str
+    public function chopBefore(string $needle, int $occurence_number = null, bool $last_occurrence = false): Str
     {
+        $chops = explode($needle, $this->haystack);
+
+        if (!$occurence_number)
+            $string = array_shift(clone $chops);
+
+        if ($occurence_number)
+            $string = $chops[$occurence_number - 1];
+
+        if ($last_occurrence)
+            $string = last($chops);
+
+        $this->_set($string);
+
+        return $this;
     }
 
     /**
@@ -26,8 +41,16 @@ trait Chop
      * @param string $needle
      * @return Str
      */
-    public function chopAfter(string $needle): Str
+    public function chopAfter(string $needle, bool $after_last_occurrence = false): Str
     {
+        $chops = explode("\\", get_class(new $this->model));
+
+        if ($after_last_occurrence)
+            return last($chops);
+
+        $this->_set($new_string);
+
+        return $this;
     }
 
     /**
