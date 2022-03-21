@@ -17,12 +17,12 @@ trait Chop
      * @param int $occurence_number Times needle should occur before chopping
      * @return Str
      */
-    public function chopBefore(string $needle, int $occurence_number = null, bool $last_occurrence = false): Str
+    public function chopBefore(string $needle, bool $last_occurrence = false, int $occurence_number = null): Str
     {
         $chops = explode($needle, $this->haystack);
 
         if (!$occurence_number)
-            $string = array_shift(clone $chops);
+            $string = array_shift([...$chops]);
 
         if ($occurence_number)
             $string = $chops[$occurence_number - 1];
