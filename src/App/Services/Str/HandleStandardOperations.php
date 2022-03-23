@@ -26,19 +26,45 @@ trait HandleStandardOperations
      * @param array|null $map
      * @return array|object|null
      */
-    public function explode(string|array $needles, int $limit = null, array $map = null, bool $returnResults = false): array|object|null
+    public function explode(string|array $needles, int $limit = null, array $map = null, bool $returnResults = false, bool $append = false, array $forEach = null): array|object|null
     {
         if (is_string($needles)) $needles = [$needles];
 
         $results = null;
 
         foreach ($needles as $needle) {
-            $needle = trim($needle);
+            $needle = strtolower(trim($needle));
 
-            if (!str_contains($this->haystack, $needle))
+
+            $found = false;
+
+            if ($forEach) {
+                $sub_needles = [];
+
+                foreach ($forEach as $try) {
+                    $try = strtolower($try);
+
+                    $sub_needles[] = "$needle " . trim($try);
+                }
+
+                $sub_needles[] = $needle;
+
+                $contains = $this->contains($sub_needles, return: true);
+
+                if ($contains) {
+                    $needle = $contains;
+
+                    $found = true;
+                }
+            }
+
+            if (!str_contains($this->haystack, $needle) || ($forEach && !$found))
                 continue;
 
             $array = $this->__explode($needle, $this->haystack, $limit);
+
+            if ($append)
+                $array[0] = $array[0] . $needle;
 
             break;
         }

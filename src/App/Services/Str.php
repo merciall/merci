@@ -166,9 +166,13 @@ class Str extends Service
 
     private function many_needles(array $needles, string $operation)
     {
+        $hit = false;
+
         foreach ($needles as $needle) {
             if (!$operation($this->haystack, $this->standardize($needle)))
                 continue;
+
+            $hit = $needle;
 
             if (!$this->return)
                 return true;
@@ -179,7 +183,7 @@ class Str extends Service
         if (!$this->return)
             return false;
 
-        return $this->default ?? $this->haystack;
+        return $hit;
     }
 
     protected function standardize(?string $string): ?string
