@@ -9,11 +9,12 @@ use Merciall\Merci\App\Services\Str\Comparison;
 use Merciall\Merci\App\Services\Str\HandleBatchOperations;
 use Merciall\Merci\App\Services\Str\HandleStandardOperations;
 use Merciall\Merci\App\Services\Str\Manipulate;
+use Merciall\Merci\App\Services\Str\Normalize;
 use Merciall\Merci\App\Services\Str\Replace;
 
 class Str extends Service
 {
-    use HandleStandardOperations, HandleBatchOperations, Chop, Comparison, Cases, Replace, Manipulate;
+    use HandleStandardOperations, HandleBatchOperations, Normalize, Chop, Comparison, Cases, Replace, Manipulate;
 
     protected ?string $default;
 
@@ -191,6 +192,17 @@ class Str extends Service
             return false;
 
         return $hit;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param callable $fn
+     * @return void
+     */
+    public function normalize(callable $fn)
+    {
+        $this->normalize = 
     }
 
     protected function standardize(?string $string): ?string
