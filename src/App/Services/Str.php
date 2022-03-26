@@ -194,17 +194,6 @@ class Str extends Service
         return $hit;
     }
 
-    /**
-     * Undocumented function
-     *
-     * @param callable $fn
-     * @return void
-     */
-    public function normalize(callable $fn)
-    {
-        $this->normalize = 
-    }
-
     protected function standardize(?string $string): ?string
     {
         if (!$string) return null;
