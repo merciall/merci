@@ -24,9 +24,16 @@ class Str extends Service
     protected null|array|object $results;
 
     public function __construct(
-        protected ?string $haystack
+        protected ?string $haystack,
+        bool $standardize = true
     ) {
-        $this->haystack = $this->standardize($haystack);
+        if (!$standardize) {
+            $this->haystack = $this->standardize($haystack);
+
+            return;
+        }
+        
+        $this->haystack = $haystack;
     }
 
     public function __toString(): string
