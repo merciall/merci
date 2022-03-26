@@ -19,7 +19,7 @@ trait Normalize
      */
     public function normalize(callable $fn): Str
     {
-        $this->haystack = $fn($this->haystack);
+        $this->_set($fn($this->haystack));
 
         $this->normalize = $fn;
 
