@@ -28,12 +28,12 @@ class Str extends Service
         bool $standardize = true
     ) {
         if (!$standardize) {
-            $this->haystack = $this->standardize($haystack);
+            $this->haystack = $haystack;
 
             return;
         }
-        
-        $this->haystack = $haystack;
+
+        $this->haystack = $this->standardize($haystack);
     }
 
     public function __toString(): string
