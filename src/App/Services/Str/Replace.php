@@ -2,6 +2,8 @@
 
 namespace Merciall\Merci\App\Services\Str;
 
+use Merciall\Merci\App\Services\Str;
+
 trait Replace
 {
     /**
