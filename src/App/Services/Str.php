@@ -137,29 +137,6 @@ class Str extends Service
         return $obj;
     }
 
-    /**
-     * Undocumented function
-     *
-     * @param string|array<string> $needles
-     * @param string|null $default
-     * @param boolean $return Return the first needle contained inside the haystack
-     * @return string
-     */
-    public function contains(string|array $needles, string $default = null, bool $return = false): bool|string
-    {
-        if (is_array($needles))
-            $this->validate($needles)->type('str');
-
-        $this->default = $default;
-
-        $this->return = $return;
-
-        if (is_string($needles))
-            return $this->single_needle($needles, "str_contains");
-
-        return $this->many_needles($needles, "str_contains");
-    }
-
     private function single_needle(string $needle, string $operation)
     {
         if ($operation($this->haystack, $this->standardize($needle))) {
